@@ -1,11 +1,28 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import styled from 'styled-components';
+import LoginForm from '../../components/Forms/LoginForm';
+import {Logo} from '../../components/Logo';
 
 const Login = () => {
+  const Container = styled.View`
+    flex: 1;
+    background: #010814;
+    align-items: center;
+    justify-content: center;
+  `;
+
+  const TextHeader = styled.Text`
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+  `;
+
   return (
-    <View>
-      <Text>Login</Text>
-    </View>
+    <Container>
+      <TextHeader>Log in</TextHeader>
+      <Logo />
+      <LoginForm />
+    </Container>
   );
 };
 
