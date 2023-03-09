@@ -1,26 +1,25 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import styled from 'styled-components';
+
+const Touchable = styled.TouchableOpacity`
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #0e4faf;
+`;
+
+const Label = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+`;
 
 export const Button = props => {
   const {label, pressHandler} = props;
 
   return (
-    <TouchableOpacity style={styles.container} onPress={pressHandler}>
-      <Text style={styles.text}>{label}</Text>
-    </TouchableOpacity>
+    <Touchable onPress={pressHandler}>
+      <Label>{label}</Label>
+    </Touchable>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-    textAlign: 'center',
-  },
-});

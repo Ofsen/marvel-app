@@ -4,9 +4,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {ThemeProvider} from 'styled-components';
 import theme from './src/config/theme';
 // Screens
-import Home from './src/screens/Home';
 import Login from './src/screens/Login';
 import Signin from './src/screens/Signin';
+import Characters from './src/screens/Characters';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,11 +19,17 @@ function App() {
             options={{
               headerShown: false,
             }}
-            name="Home"
-            component={Home}
+            name="Login"
+            component={Login}
           />
           <Stack.Screen name="Signin" component={Signin} />
-          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="Characters"
+            component={Characters}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
