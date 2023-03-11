@@ -7,6 +7,7 @@ import TextField from '../TextField';
 import {useNavigation, Link} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LOGIN_API} from '../../../config/defaultValues';
+import {useAuth} from '../../../contexts/authContext';
 
 const FormContainer = styled.View`
   width: 70%;
@@ -18,10 +19,11 @@ const FormContainer = styled.View`
 const WhiteText = styled.Text`
   color: white;
   text-align: center;
+  margin-top: 16px;
 `;
 
 const LoginForm = () => {
-  const navigation = useNavigation();
+  const {Login} = useAuth();
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -29,26 +31,7 @@ const LoginForm = () => {
     if (username.length < 3 || password.length < 8) {
       return alert('Invalid username or password');
     }
-    axios
-      .post(LOGIN_API, {
-        username,
-        password,
-      })
-      .then(res => {
-        if (
-          res.data.details === 'user connected' &&
-          res.headers['x-access-token']
-        ) {
-          AsyncStorage.setItem('token', res.headers['x-access-token'])
-            .then(() => {
-              navigation.navigate('Characters');
-            })
-            .catch(err => alert(err));
-        }
-      })
-      .catch(err => {
-        alert(JSON.stringify(err));
-      });
+    Login({username, password});
   };
 
   return (

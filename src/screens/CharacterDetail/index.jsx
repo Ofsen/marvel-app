@@ -18,7 +18,7 @@ const TextHeader = styled.Text`
   padding: 16px 0;
 `;
 
-const Characters = ({navigation}) => {
+const CharacterDetail = ({navigation}) => {
   const [data, setData] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [loading, setLoading] = React.useState(true);
@@ -27,7 +27,7 @@ const Characters = ({navigation}) => {
     const ts = Date.now();
 
     axios
-      .get(`${MARVEL_API}/characters`, {
+      .get(`${MARVEL_API}/character`, {
         params: {
           ts: ts,
           apikey: PUBLIC_MARVEL_KEY,
@@ -55,7 +55,7 @@ const Characters = ({navigation}) => {
 
   return (
     <View>
-      <TextHeader>Characters</TextHeader>
+      <TextHeader>Character</TextHeader>
       <FlatList
         initialNumToRender={20}
         data={data}
@@ -70,4 +70,4 @@ const Characters = ({navigation}) => {
   );
 };
 
-export default Characters;
+export default CharacterDetail;
